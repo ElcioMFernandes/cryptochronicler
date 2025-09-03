@@ -1,0 +1,8 @@
+{
+  "explorer.sortOrderLexicographicOptions": "upper",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "index.ts": "*.ts,*.tsx,*.js,*.jsx",
+    "index.tsx": "*.ts,*.tsx,*.js,*.jsx"
+  }
+}
