@@ -9,7 +9,7 @@ class Socket {
   private redis: RedisClientType;
 
   // Public attributes
-  public trades: any[] = [];
+  public trades: Record<string, Trade[]> = {};
 
   constructor() {
     this.redis = createClient({ url: "redis://localhost:6379" });
@@ -47,9 +47,13 @@ class Socket {
       });
 
       this.socket.on("message", (data) => {
-        const trade: Trade = JSON.parse(data.toString());
+        const trade: Trade = JSON.parse(data.toString())["data"];
 
-        console.log(trade);
+        if (!this.trades[trade.s]) {
+          this.trades[trade.s] = [];
+        }
+
+        this.trades[trade.s]!.push(trade);
       });
     });
   }
