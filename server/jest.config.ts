@@ -1,15 +1,15 @@
-import type { JestConfigWithTsJest } from 'ts-jest';
+import type { JestConfigWithTsJest } from "ts-jest";
 
 const config: JestConfigWithTsJest = {
-  preset: 'ts-jest/presets/default-esm',
+  preset: "ts-jest/presets/default-esm",
   verbose: true,
-  testEnvironment: 'node',
   collectCoverage: true,
-  coverageDirectory: 'coverage',
-  transform: {}, // Mantém vazio, necessário para ESM
-  extensionsToTreatAsEsm: ['.ts'],
+  testEnvironment: "node",
+  coverageDirectory: "coverage",
+  extensionsToTreatAsEsm: [".ts"],
+  transform: {},
   moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1'
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
 };
 
