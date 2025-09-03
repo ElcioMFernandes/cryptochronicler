@@ -7,10 +7,12 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "target": "esnext",
-    "module": "nodenext",
-    "types": [],
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
     // For nodejs:
+    "types": [],
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
@@ -40,5 +42,10 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"],
+  // Development environment
+  "ts-node": {
+    "esm": true
   }
 }
