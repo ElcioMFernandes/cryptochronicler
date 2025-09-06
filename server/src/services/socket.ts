@@ -6,10 +6,9 @@ import type { Trade } from "../types/trade.js";
 class Socket {
   // Private atributes
   private socket: WebSocket | null = null;
-  private redis: RedisClientType;
 
   // Public attributes
-  public trades: Record<string, Trade[]> = {};
+  public redis: RedisClientType;
 
   constructor() {
     this.redis = createClient({ url: "redis://localhost:6379" });
@@ -46,14 +45,10 @@ class Socket {
         }
       });
 
-      this.socket.on("message", (data) => {
+      this.socket.on("message", async (data) => {
         const trade: Trade = JSON.parse(data.toString())["data"];
 
-        if (!this.trades[trade.s]) {
-          this.trades[trade.s] = [];
-        }
-
-        this.trades[trade.s]!.push(trade);
+        await this.redis.rPush(trade.s, JSON.stringify(trade));
       });
     });
   }
